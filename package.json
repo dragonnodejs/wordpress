@@ -1,7 +1,7 @@
 {
   "name": "dragonnodejs-wordpress",
   "description": "Bundle with service to get the posts with the author from wordpress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "http://github.com/dragonnodejs/wordpress",
   "license": "MIT",
   "readmeFilename": "README.md",
@@ -9,6 +9,7 @@
   "dependencies": {
     "dragonnodejs": "^4.0.4",
     "async": "^1.4.2",
+    "lodash": "^3.10.0",
     "request": "^2.61.0"
   },
   "repository": {

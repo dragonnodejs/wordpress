@@ -9,7 +9,8 @@
  */
 
 module.exports = function (config, libraries, services) {
-    var async = libraries.async,
+    var _ = libraries.lodash,
+        async = libraries.async,
         request = libraries.request;
 
     var wordpress = function (callback) {

@@ -5,6 +5,7 @@
 module.exports = function (config, _, services) {
     config = {
         libraries: {
+            lodash: require('lodash'),
             async: require('async'),
             request: require('request')
         },
