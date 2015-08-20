@@ -1,4 +1,4 @@
-# DragonNode.js RestAPI
+# DragonNode.js Wordpress
 Bundle with service to get the posts with the author from wordpress
 
 ## Installation
