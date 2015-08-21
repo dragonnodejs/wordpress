@@ -13,7 +13,11 @@ module.exports = function (config, libraries, services) {
         async = libraries.async,
         request = libraries.request;
 
-    var wordpress = function (callback) {
+    var wordpress = function (query, callback) {
+        if (!callback) {
+            callback = query;
+            query = '';
+        }
         if (!config.url) {
             callback({ posts: [], users: [] });
             return;
@@ -22,7 +26,7 @@ module.exports = function (config, libraries, services) {
         async.parallel(
             [
                 function (next) {
-                    request(config.url + '/wp-json/wp/v2/posts', function (err, res, body) {
+                    request(config.url + '/wp-json/wp/v2/posts' + query, function (err, res, body) {
                         posts = JSON.parse(body);
                         next();
                     });
