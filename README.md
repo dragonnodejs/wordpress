@@ -6,7 +6,7 @@ Bundle with service to get the posts with the author from wordpress
 ```javascript
 {
     "dependencies": {
-        "dragonnodejs-wordpress": "^1.0.1"
+        "dragonnodejs-wordpress": "^1.1.0"
     }
 }
 ```

@@ -14,6 +14,10 @@ module.exports = function (config, libraries, services) {
         request = libraries.request;
 
     var wordpress = function (callback) {
+        if (!config.url) {
+            callback({ posts: [], users: [] });
+            return;
+        }
         var posts, users = {};
         async.parallel(
             [
