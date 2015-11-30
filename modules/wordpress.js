@@ -3,17 +3,14 @@
 /**
  * Service to get the posts and the users from wordpress
  * @example
-    wordpress: {
-        url: process.env.WORDPRESS_URL
-    }
+    ['wordpress', { url: process.env.WORDPRESS_URL }]
  */
 
-module.exports = function (config, libraries, services) {
-    var _ = libraries.lodash,
-        async = libraries.async,
+module.exports = (config, libraries, services) => {
+    let async = libraries.async,
         request = libraries.request;
 
-    var wordpress = function (query, callback) {
+    let wordpress = (query, callback) => {
         if (!callback) {
             callback = query;
             query = '';
@@ -22,28 +19,26 @@ module.exports = function (config, libraries, services) {
             callback({ posts: [], users: [] });
             return;
         }
-        var posts, users = {};
+        let posts, users = {};
         async.parallel(
             [
-                function (next) {
-                    request(config.url + '/wp-json/wp/v2/posts' + query, function (err, res, body) {
+                next => {
+                    request(config.url + '/wp-json/wp/v2/posts' + query, (err, res, body) => {
                         posts = JSON.parse(body);
                         next();
                     });
                 },
-                function (next) {
-                    request(config.url + '/wp-json/wp/v2/users', function (err, res, body) {
-                        var data = JSON.parse(body);
-                        _.each(data, function (user) {
+                next => {
+                    request(config.url + '/wp-json/wp/v2/users', (err, res, body) => {
+                        let data = JSON.parse(body);
+                        for (let user of data) {
                             users[user.id] = user;
-                        });
+                        }
                         next();
                     });
                 }
             ],
-            function () {
-                callback({ posts: posts, users: users });
-            }
+            () => { callback({ posts: posts, users: users }); }
         );
     };
 

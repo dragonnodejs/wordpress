@@ -1,18 +1,12 @@
 'use strict';
 
-// Bundle with service to get the posts with the author from wordpress
+// Load the libraries and run the modules for the bundle
 
-module.exports = function (config, _, services) {
-    config = {
-        libraries: {
-            lodash: require('lodash'),
-            async: require('async'),
-            request: require('request')
-        },
-        directory: __dirname + '/modules/',
-        modules: {
-            directory: config
-        }
+module.exports = (config, _, services) => {
+    let directory = __dirname + '/modules/';
+    let libraries = {
+        async: require('async'),
+        request: require('request')
     };
-    require('dragonnodejs')(config, services);
+    require('dragonnodejs')(directory, config, libraries, services);
 };

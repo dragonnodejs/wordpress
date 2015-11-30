@@ -1,27 +1,13 @@
 # DragonNode.js Wordpress
-Bundle with service to get the posts with the author from wordpress
+Bundle with service to get the posts and the users from wordpress
 
 ## Installation
-- Add bundle to the "package.json":
+- Run ```npm install dragonnodejs-wordpress --save```
+- Add the bundle to the "app.js":
 ```javascript
-{
-    "dependencies": {
-        "dragonnodejs-wordpress": "^1.2.0"
-    }
-}
-```
-- Run "npm install"
-- Extend the configuration in "app.js":
-```javascript
-var config = {
-    modules: {
-        npm: [
-            [require('dragonnodejs-wordpress'), {
-                wordpress: {
-                    url: process.env.WORDPRESS_URL
-                }
-            }]
-        ]
-    }
-};
+let modules = [
+    [require('dragonnodejs-wordpress'), [
+        ['wordpress', { url: process.env.WORDPRESS_URL }]
+    ]]
+];
 ```
